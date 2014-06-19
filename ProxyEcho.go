@@ -42,7 +42,7 @@ func redirect(url string) string{
 
   resp, err := client.Do(req) 
   
-  log.Printf("Attempting to get: " + echoaddr + ":" + echoport + url)
+  log.Printf("Attempting to get: " + echoaddr + "/" + url)
   if err != nil { 
      log.Printf("Trouble getting url, %s\n", err) 
   }
