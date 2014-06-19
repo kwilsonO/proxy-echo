@@ -38,6 +38,7 @@ func init() {
  
 func redirect(url string) string{
   client := &http.Client{}
+  log.Printf("my echoaddr: " + echoaddr)
   req, err := http.NewRequest("GET", "http://" + echoaddr + "/" + url, nil)
 
   resp, err := client.Do(req) 
