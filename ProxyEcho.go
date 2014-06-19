@@ -17,8 +17,7 @@ var(
 
 func init() {
 
-  echoaddr = "127.0.0.1"
-  echoport = "9998"
+  echoaddr = "127.0.0.1:9998"
 
   cfg, err := atlantis.LoadAppConfig()
   if err != nil {
@@ -28,6 +27,13 @@ func init() {
   }
   listenAddr = fmt.Sprintf(":%d", cfg.HTTPPort)
   
+  if proxyechoDep := cfg.Dependencies["kyle-echo"]; proxyechoDep != nil {
+           if p := proxyechoDep["address"].(string); p != "" {
+              echoaddr = p
+           }
+  }
+  log.Printf("proxying to: " + echoaddr);  
+   
 }
  
 func redirect(url string) string{
